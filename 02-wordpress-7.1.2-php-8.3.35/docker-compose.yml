@@ -1,0 +1,50 @@
+name: q618-wp8335-video
+
+services:
+  db:
+    image: mariadb:11@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15
+    pull_policy: never
+    container_name: q618-wp8335-db
+    environment:
+      MARIADB_ROOT_PASSWORD: q618-root-password
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: q618-wordpress-password
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 2s
+      timeout: 2s
+      retries: 60
+    networks: [lab]
+    volumes: [database:/var/lib/mysql]
+
+  wordpress:
+    image: wordpress:7.1.2-php8.3-apache@sha256:4abf7a450ee477dde967584f8174d7e03221d224c4971a0c38d84e7254426e64
+    pull_policy: never
+    container_name: q618-wp8335-target
+    hostname: q618-wp8335-target
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: q618-wordpress-password
+      WORDPRESS_DB_NAME: wordpress
+    ports:
+      - "127.0.0.1:18540:80"
+    networks: [lab]
+    volumes: [wordpress:/var/www/html]
+
+networks:
+  lab:
+    name: q618-wp8335-video
+    ipam:
+      config:
+        - subnet: 10.254.83.0/28
+
+volumes:
+  database:
+    name: q618-wp8335-video-db
+  wordpress:
+    name: q618-wp8335-video-www

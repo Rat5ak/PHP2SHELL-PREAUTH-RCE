@@ -1,0 +1,26 @@
+name: phpmyadmin-functional-fixed
+
+services:
+  db:
+    image: mariadb:11@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15
+    container_name: p2s-phpmyadmin-fixed-db
+    environment:
+      MARIADB_ROOT_PASSWORD: p2s-root
+      MARIADB_DATABASE: p2s
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+  phpmyadmin-fixed:
+    build:
+      context: .
+      args:
+        PHP_IMAGE: php:8.4.27-apache@sha256:c6527b06c772a2c3cae648ce58c23a2a12ed2fed41cdfb0619ea64be008cc601
+    container_name: p2s-phpmyadmin-functional-fixed
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:18213:80"
