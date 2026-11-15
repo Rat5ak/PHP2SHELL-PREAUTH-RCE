@@ -85,7 +85,7 @@ and
 Not mine. The phpMyAdmin lab builds on public php2shell prior art, which is
 kept under
 [`prior-art-php2shell-joas/`](03-phpmyadmin-5.2.2-php-8.4.26/prior-art-php2shell-joas/)
-with its own files.
+with its own files. The vulnerabilities were originally reported by Calif https://calif.io/php2shell/ who are not Wiz. 
 
 ## Don't be stupid
 
